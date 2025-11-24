@@ -2,9 +2,10 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.samochodgui.HelloController">
    <children>
       <MenuBar>
         <menus>
@@ -33,32 +34,31 @@
                                     <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
                                        <children>
                                           <Label text="Model" HBox.hgrow="ALWAYS" />
-                                          <TextField HBox.hgrow="ALWAYS" />
+                                          <TextField fx:id="modelTextField" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="20.0" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
                                            <children>
                                           <Label text="Nr rejestracyjny" HBox.hgrow="ALWAYS" />
-                                          <TextField HBox.hgrow="ALWAYS" />
+                                          <TextField fx:id="nrRejestracyjnyTextField" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="57.0" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
                                        <children>
                                           <Label text="Waga" HBox.hgrow="ALWAYS" />
-                                          <TextField HBox.hgrow="ALWAYS" />
+                                          <TextField fx:id="wagaTextField" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="94.0" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
                                        <children>
                                           <Label text="Prędkość" HBox.hgrow="ALWAYS" />
-                                          <TextField HBox.hgrow="ALWAYS" />
+                                          <TextField fx:id="predkoscTextField" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                        <children>
-                                          <Button mnemonicParsing="false" text="Włącz" />
-                                          <Button mnemonicParsing="false" text="Wyłącz" />
-                                          <Button layoutX="74.0" layoutY="10.0" mnemonicParsing="false" text="Button" />
+                                          <Button fx:id="startButton" mnemonicParsing="false" onAction="#onStartButton" text="Włącz" />
+                                          <Button fx:id="stopButton" mnemonicParsing="false" onAction="#onStopButton" text="Wyłącz" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -72,31 +72,31 @@
                                     <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
                                        <children>
                                           <Label text="Nazwa" HBox.hgrow="ALWAYS" />
-                                          <TextField HBox.hgrow="ALWAYS" />
+                                          <TextField fx:id="skrzyniaNazwaTextField" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="20.0" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
                                        <children>
                                           <Label text="Cena" HBox.hgrow="ALWAYS" />
-                                          <TextField HBox.hgrow="ALWAYS" />
+                                          <TextField fx:id="skrzyniaCenaTextField" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="57.0" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
                                        <children>
                                           <Label text="Waga" HBox.hgrow="ALWAYS" />
-                                          <TextField HBox.hgrow="ALWAYS" />
+                                          <TextField fx:id="skrzyniaWagaTextField" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="94.0" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
                                        <children>
                                           <Label text="Bieg" HBox.hgrow="ALWAYS" />
-                                          <TextField HBox.hgrow="ALWAYS" />
+                                          <TextField fx:id="skrzyniaBiegTextField" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                        <children>
-                                          <Button mnemonicParsing="false" text="Zwiększ bieg" />
-                                          <Button mnemonicParsing="false" text="Zmniejsz bieg" />
+                                          <Button fx:id="moreBiegButton" mnemonicParsing="false" onAction="#onMoreBiegButton" text="Zwiększ bieg" />
+                                          <Button fx:id="lessBiegButton" mnemonicParsing="false" onAction="#onLessBiegButton" text="Zmniejsz bieg" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -110,31 +110,31 @@
                                     <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
                                        <children>
                                           <Label text="Nazwa" HBox.hgrow="ALWAYS" />
-                                          <TextField HBox.hgrow="ALWAYS" />
+                                          <TextField fx:id="silnikNazwaTextField" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="20.0" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
                                        <children>
                                           <Label text="Cena" HBox.hgrow="ALWAYS" />
-                                          <TextField HBox.hgrow="ALWAYS" />
+                                          <TextField fx:id="silnikCenaTextField" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="57.0" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
                                        <children>
                                           <Label text="Waga" HBox.hgrow="ALWAYS" />
-                                          <TextField HBox.hgrow="ALWAYS" />
+                                          <TextField fx:id="silnikWagaTextField" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="94.0" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
                                        <children>
                                           <Label text="Obroty" HBox.hgrow="ALWAYS" />
-                                          <TextField HBox.hgrow="ALWAYS" />
+                                          <TextField fx:id="silnikObrotyTextField" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                        <children>
-                                          <Button mnemonicParsing="false" text="Dodaj gazu" />
-                                          <Button mnemonicParsing="false" text="Ujmij gazu" />
+                                          <Button fx:id="moreGazButton" mnemonicParsing="false" onAction="#onMoreGazButton" text="Dodaj gazu" />
+                                          <Button fx:id="lessGazButton" mnemonicParsing="false" onAction="#onLessGazButton" text="Ujmij gazu" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -148,31 +148,31 @@
                                     <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
                                        <children>
                                           <Label text="Nazwa" HBox.hgrow="ALWAYS" />
-                                          <TextField HBox.hgrow="ALWAYS" />
+                                          <TextField fx:id="sprzegloNameTextField" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="20.0" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
                                        <children>
                                           <Label text="Cena" HBox.hgrow="ALWAYS" />
-                                          <TextField HBox.hgrow="ALWAYS" />
+                                          <TextField fx:id="sprzegloCenaTextField" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="57.0" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
                                        <children>
                                           <Label text="Waga" HBox.hgrow="ALWAYS" />
-                                          <TextField HBox.hgrow="ALWAYS" />
+                                          <TextField fx:id="sprzegloWagaTextField" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="94.0" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
                                        <children>
                                           <Label text="Stan" HBox.hgrow="ALWAYS" />
-                                          <TextField HBox.hgrow="ALWAYS" />
+                                          <TextField fx:id="sprzegloStanTextField" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                        <children>
-                                          <Button mnemonicParsing="false" text="Naciśnij" />
-                                          <Button mnemonicParsing="false" text="Zwolnij" />
+                                          <Button fx:id="pressSprzegloButton" mnemonicParsing="false" onAction="#onPressSprzegloButton" text="Naciśnij" />
+                                          <Button fx:id="unpressSprzegloButton" mnemonicParsing="false" onAction="#onUnpressSprzegloButton" text="Zwolnij" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -190,12 +190,18 @@
                         <HBox alignment="CENTER" spacing="10.0">
                            <children>
                               <Label text="Samochód" />
-                              <ComboBox prefWidth="150.0" />
-                              <Button mnemonicParsing="false" text="Dodaj nowy" />
-                              <Button mnemonicParsing="false" text="Usuń" />
+                              <ComboBox fx:id="samochodComboBox" onAction="#onSamochodComboBoxChange" prefWidth="150.0" />
+                              <Button fx:id="addNewCarButton" mnemonicParsing="false" onAction="#onAddNewCarButton" text="Dodaj nowy" />
+                              <Button fx:id="removeCarButton" mnemonicParsing="false" onAction="#onRemoveCarButton" text="Usuń" />
                            </children>
                         </HBox>
-                        <Pane style="-fx-background-color: lightgreen;" VBox.vgrow="ALWAYS" />
+                        <Pane style="-fx-background-color: lightgreen;" VBox.vgrow="ALWAYS">
+                           <children>
+                              <ImageView fitHeight="61.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@car.png" />
+                                 </image></ImageView>
+                           </children></Pane>
                      </children>
                      <padding>
                         <Insets top="5.0" />
