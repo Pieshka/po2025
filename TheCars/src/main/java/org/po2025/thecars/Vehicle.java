@@ -55,6 +55,7 @@ public class Vehicle
         float wheelRPM = engineRPM / gearbox.GetTotalRatio();
         float wheelCircumference = (float) (2 * Math.PI * wheelDiameter);
         this.currentVelocity = (wheelCircumference * wheelRPM) / 60.0f;
+        if(this.currentVelocity > this.maxSpeed) this.currentVelocity = this.maxSpeed;
         return this.currentVelocity;
     }
 
