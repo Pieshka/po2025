@@ -2,10 +2,11 @@ package org.po2025.thecars;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Gearbox extends Component
 {
-    private static HashMap<Integer, Float> GENERIC_GEAR_RATIOS = new HashMap<>();
+    public static HashMap<Integer, Float> GENERIC_GEAR_RATIOS = new HashMap<>();
     static {
         GENERIC_GEAR_RATIOS.put(0, 0.0f);
         GENERIC_GEAR_RATIOS.put(1, 3.78f);
@@ -15,10 +16,11 @@ public class Gearbox extends Component
         GENERIC_GEAR_RATIOS.put(5, 0.85f);
         GENERIC_GEAR_RATIOS.put(6, 0.67f);
     }
+    public static float GENERIC_FINAL_DRIVE = 4.1f;
 
     private int currentGear = 0;
     private float finalDrive;
-    private HashMap<Integer, Float> gearRatios;
+    private Map<Integer, Float> gearRatios;
     private Clutch clutch;
 
     public Gearbox(Builder builder)
@@ -75,8 +77,8 @@ public class Gearbox extends Component
         private String name = "Generic Gearbox";
         private BigDecimal weight = BigDecimal.ONE;
         private BigDecimal price =  BigDecimal.ZERO;
-        private float finalDrive = 4.1f;
-        private HashMap<Integer, Float> gearRatios = GENERIC_GEAR_RATIOS;
+        private float finalDrive = GENERIC_FINAL_DRIVE;
+        private Map<Integer, Float> gearRatios = GENERIC_GEAR_RATIOS;
         private Clutch clutch;
 
         public Builder setName(String name)
@@ -103,7 +105,7 @@ public class Gearbox extends Component
             return this;
         }
 
-        public Builder setGearRatios(HashMap<Integer, Float> gearRatios)
+        public Builder setGearRatios(Map<Integer, Float> gearRatios)
         {
             this.gearRatios = gearRatios;
             return this;

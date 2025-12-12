@@ -32,6 +32,7 @@ public class Vehicle
     public String GetModel() { return model; }
     public String GetLicensePlateNumber() { return licensePlateNumber; }
     public float GetMaxSpeed() { return maxSpeed; }
+    public float GetWheelDiameter() { return wheelDiameter; }
     public Point2D GetActualPosition() { return actualPosition; }
     public Engine GetEngine() { return engine; }
     public Gearbox GetGearbox() { return gearbox; }
@@ -46,6 +47,11 @@ public class Vehicle
         return engine.GetCurrentRotationSpeed() == 0;
     }
 
+    public void GoTo(float x, float y)
+    {
+        newPosition = new Point2D.Float(x,y);
+    }
+
     public float GetCurrentVelocity()
     {
         if(gearbox.GetClutch().IsPressed() || gearbox.GetTotalRatio() <= 0)
@@ -56,6 +62,7 @@ public class Vehicle
         float wheelCircumference = (float) (2 * Math.PI * wheelDiameter);
         this.currentVelocity = (wheelCircumference * wheelRPM) / 60.0f;
         if(this.currentVelocity > this.maxSpeed) this.currentVelocity = this.maxSpeed;
+
         return this.currentVelocity;
     }
 
@@ -71,10 +78,22 @@ public class Vehicle
 
     public void UpdateCurrentPosition(double deltaTime)
     {
-        double distance = newPosition.distance(actualPosition);
-        double dx = GetCurrentVelocity() * deltaTime * (newPosition.getX() - actualPosition.getX()) / distance;
-        double dy = GetCurrentVelocity() * deltaTime * (newPosition.getY() - actualPosition.getY()) / distance;
-        actualPosition.setLocation(newPosition.getX() + dx, newPosition.getY() + dy);
+        double dxTotal = newPosition.getX() - actualPosition.getX();
+        double dyTotal = newPosition.getY() - actualPosition.getY();
+        double distance = Math.hypot(dxTotal, dyTotal);
+
+        if(distance < 0.001)
+        {
+            actualPosition.setLocation(newPosition);
+            return; // We are at the destination
+        }
+
+        double move = GetCurrentVelocity() * deltaTime;
+        double ratio = Math.min(1.0, move/distance);
+        double dx = dxTotal * ratio;
+        double dy = dyTotal * ratio;
+
+        actualPosition.setLocation(actualPosition.getX() + dx, actualPosition.getY() + dy);
 
         for (VehicleObserver observer : observers)
         {
@@ -93,6 +112,13 @@ public class Vehicle
     {
         engine.Stop();
         gearbox.SetLowestGear();
+        this.currentVelocity = 0; // Let's assume we are pressing the brake on stop
+    }
+
+    @Override
+    public String toString()
+    {
+        return GetModel() + " " + GetLicensePlateNumber();
     }
 
     public static class Builder
@@ -100,7 +126,7 @@ public class Vehicle
         private String model = "Generic Vehicle";
         private String licensePlateNumber = "A1234";
         private float maxSpeed = 100; // m/s
-        private float wheelDiameter = 1; // m
+        private float wheelDiameter = 0.1f; // m
         private Engine engine;
         private Gearbox gearbox;
 

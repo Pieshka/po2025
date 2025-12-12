@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 
 public class Engine extends Component
 {
-    private static final float MINIMUM_ROTATION_SPEED = 1000.0f;
+    public static final float MINIMUM_ROTATION_SPEED = 1000.0f;
 
-    private float maximumRotationSpeed; /* In RPMs */
+    private final float maximumRotationSpeed; /* In RPMs */
     private float currentRotationSpeed = 0;
 
     public Engine(Builder builder)
@@ -31,16 +31,16 @@ public class Engine extends Component
         this.currentRotationSpeed = 0;
     }
 
-    public void IncreateRotationSpeed()
+    public void IncreaseRotationSpeed()
     {
         if(this.currentRotationSpeed + 1 > maximumRotationSpeed) return;
-        this.currentRotationSpeed = this.currentRotationSpeed + 1;
+        this.currentRotationSpeed = this.currentRotationSpeed + 100;
     }
 
     public void DecreaseRotationSpeed()
     {
         if (this.currentRotationSpeed - 1 < 0) return;
-        this.currentRotationSpeed = this.currentRotationSpeed - 1;
+        this.currentRotationSpeed = this.currentRotationSpeed - 100;
     }
 
     public static class Builder
