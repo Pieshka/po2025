@@ -85,6 +85,7 @@ public class Vehicle
         if(distance < 0.001)
         {
             actualPosition.setLocation(newPosition);
+            this.currentVelocity = 0; // We have no more velocity
             return; // We are at the destination
         }
 
