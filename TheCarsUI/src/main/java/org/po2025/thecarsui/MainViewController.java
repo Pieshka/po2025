@@ -109,7 +109,7 @@ public class MainViewController implements VehicleObserver
 
     /* Vehicle Observer Methods */
     @Override
-    public void positionChanged(Vehicle vehicle, Point2D newPosition)
+    public void positionChanged(Vehicle vehicle, Point2D newPosition, double angle)
     {
         logger.debug("Vehicle {}, changed its position to: {}, {}",
                 vehicle.toString(), newPosition.getX(), newPosition.getY());
@@ -128,6 +128,18 @@ public class MainViewController implements VehicleObserver
 
                 img.setLayoutX(px);
                 img.setLayoutY(py);
+
+                // Angle normalization to <-90,90> degs
+                double newAngle = (angle > 90) ? angle - 180 :
+                        (angle < -90) ? angle + 180 : angle;
+
+                // Flip the car sprite if going backwards
+                if (angle > 90 || angle < -90) {
+                    img.setScaleX(-1);
+                } else {
+                    img.setScaleX(1);
+                }
+                img.setRotate(img.getRotate() * 0.8 + newAngle * 0.2); // Interpolation
             }
 
             // Little bit hacked, but it's the easiest way to implement this

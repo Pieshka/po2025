@@ -92,12 +92,13 @@ public class Vehicle
         double ratio = Math.min(1.0, move/distance);
         double dx = dxTotal * ratio;
         double dy = dyTotal * ratio;
+        double angle = Math.toDegrees(Math.atan2(dy,dx));
 
         actualPosition.setLocation(actualPosition.getX() + dx, actualPosition.getY() + dy);
 
         for (VehicleObserver observer : observers)
         {
-            observer.positionChanged(this, actualPosition);
+            observer.positionChanged(this, actualPosition, angle);
         }
     }
 
