@@ -17,6 +17,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.po2025.thecars.Vehicle;
 import org.po2025.thecars.VehicleObserver;
 import org.po2025.thecars.VehicleUpdater;
@@ -27,12 +29,10 @@ import java.awt.geom.Point2D;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class MainViewController implements VehicleObserver
 {
-    private static final Logger log = Logger.getLogger("MainViewController");
+    private static final Logger logger = LogManager.getLogger();
     private ScheduledExecutorService executor;
 
     private VehicleManager vehicleManager;
@@ -79,6 +79,8 @@ public class MainViewController implements VehicleObserver
     /* Starts the simulation */
     public void startSimulation()
     {
+        logger.info("Starting multi-threaded simulation...");
+
         VehicleUpdater vehicleUpdater = new VehicleUpdater(vehicleManager.getVehicles());
 
         executor = Executors.newSingleThreadScheduledExecutor(r ->
@@ -93,7 +95,7 @@ public class MainViewController implements VehicleObserver
                 TimeUnit.MILLISECONDS
         );
 
-        log.info("Simulation started.");
+        logger.info("Simulation started");
     }
 
     /* Gracefully stops the simulation */
@@ -101,7 +103,7 @@ public class MainViewController implements VehicleObserver
     {
         if (executor != null) {
             executor.shutdownNow();
-            log.info("Simulation stopped.");
+            logger.info("Simulation stopped");
         }
     }
 
@@ -109,9 +111,8 @@ public class MainViewController implements VehicleObserver
     @Override
     public void positionChanged(Vehicle vehicle, Point2D newPosition)
     {
-        // Only for debug
-        //log.info(String.format("Vehicle %s, changed its position to: %.2f, %.2f",
-        //        vehicle.toString(), newPosition.getX(), newPosition.getY()));
+        logger.debug("Vehicle {}, changed its position to: {}, {}",
+                vehicle.toString(), newPosition.getX(), newPosition.getY());
 
         Platform.runLater(() -> {
             ImageView img = vehicleImages.get(vehicle);
@@ -141,6 +142,8 @@ public class MainViewController implements VehicleObserver
         engineCurRotTF.setText(String.valueOf(v.GetEngine().GetCurrentRotationSpeed()));
         gearboxCurGearTF.setText(String.valueOf(v.GetGearbox().GetCurrentGear()));
         clutchStateTF.setText(v.GetGearbox().GetClutch().IsPressed() ? "Pressed" : "Depressed");
+
+        logger.debug("Refreshed all dynamic controls");
     }
 
     /* Refreshes all controls based on current vehicle selection */
@@ -172,6 +175,8 @@ public class MainViewController implements VehicleObserver
         clutchPriceTF.setText(v.GetGearbox().GetClutch().GetPrice().toString());
         clutchWeightTF.setText(v.GetGearbox().GetClutch().GetWeight().toString());
         clutchStateTF.setText(v.GetGearbox().GetClutch().IsPressed() ? "Pressed" : "Depressed"); // Also updates dynamically
+
+        logger.debug("Refreshed all controls");
     }
 
     /* FXML initialization function */
@@ -192,6 +197,8 @@ public class MainViewController implements VehicleObserver
                 engineIncRotBtn, engineDecRotBtn,
                 clutchDepressBtn, clutchPressBtn
         );
+
+        logger.info("FXML main view initialized");
     }
 
     /* Clears all controls */
@@ -231,7 +238,7 @@ public class MainViewController implements VehicleObserver
         {
             v.Run();
             refreshDynamicControls(v);
-            log.info(String.format("Vehicle %s started!", v));
+            logger.info("Vehicle {} started!", v);
         }
     }
 
@@ -246,7 +253,7 @@ public class MainViewController implements VehicleObserver
         {
             v.Stop();
             refreshDynamicControls(v);
-            log.info(String.format("Vehicle %s stopped!", v));
+            logger.info("Vehicle {} stopped!", v);
         }
     }
 
@@ -273,7 +280,7 @@ public class MainViewController implements VehicleObserver
         {
             v.GetGearbox().IncreaseGear();
             refreshDynamicControls(v);
-            log.info(String.format("Vehicle %s increased gear!", v));
+            logger.info("Vehicle {} increased gear!", v);
         }
     }
 
@@ -288,7 +295,7 @@ public class MainViewController implements VehicleObserver
         {
             v.GetGearbox().DecreaseGear();
             refreshDynamicControls(v);
-            log.info(String.format("Vehicle %s decreased gear!", v));
+            logger.info("Vehicle {} decreased gear!", v);
         }
     }
 
@@ -315,7 +322,7 @@ public class MainViewController implements VehicleObserver
         {
             v.GetEngine().IncreaseRotationSpeed();
             refreshDynamicControls(v);
-            log.info(String.format("Vehicle %s increased RPMs!", v));
+            logger.info("Vehicle {} increased RPMs!", v);
         }
     }
 
@@ -330,7 +337,7 @@ public class MainViewController implements VehicleObserver
         {
             v.GetEngine().DecreaseRotationSpeed();
             refreshDynamicControls(v);
-            log.info(String.format("Vehicle %s decreased RPMs!", v));
+            logger.info("Vehicle {} decreased RPMs!", v);
         }
     }
 
@@ -357,7 +364,7 @@ public class MainViewController implements VehicleObserver
         {
             v.GetGearbox().GetClutch().Press();
             refreshDynamicControls(v);
-            log.info(String.format("Vehicle %s clutch pressed!", v));
+            logger.info("Vehicle {} clutch pressed!", v);
         }
     }
 
@@ -372,7 +379,7 @@ public class MainViewController implements VehicleObserver
         {
             v.GetGearbox().GetClutch().Release();
             refreshDynamicControls(v);
-            log.info(String.format("Vehicle %s clutch released!", v));
+            logger.info("Vehicle {} clutch released!", v);
         }
     }
 
@@ -386,8 +393,12 @@ public class MainViewController implements VehicleObserver
     private void onAddNewVehicleBtn(javafx.event.ActionEvent event)
     {
         try {
+            logger.info("Loading New Vehicle View...");
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("new-vehicle-view.fxml"));
             Parent root = loader.load();
+
+            logger.info("New Vehicle View loaded");
 
             NewVehicleViewController controller = loader.getController();
 
@@ -404,8 +415,11 @@ public class MainViewController implements VehicleObserver
                 return;
 
             // Create image for this vehicle
+            logger.info("Loading default vehicle image...");
             Image img = new Image(Objects.requireNonNull(getClass().getResourceAsStream("car.png")));
             ImageView imgV = new ImageView(img);
+
+            logger.info("Default vehicle image loaded");
 
             // Setup random color
             ColorAdjust colorAdjust = new ColorAdjust();
@@ -437,13 +451,13 @@ public class MainViewController implements VehicleObserver
             // Select new vehicle
             currentVehicleCB.getSelectionModel().select(newVehicle);
 
-            log.info(String.format("Added new vehicle: %s!",newVehicle));
+            logger.info("Added new vehicle: {}!", newVehicle);
         } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error!");
             alert.setHeaderText("Vehicle add");
             alert.setContentText("An error occurred while adding Vehicle! Check logs for more information");
-            log.log(Level.SEVERE, "IOException when adding new Vehicle: " + e);
+            logger.fatal("IOException when adding new Vehicle: {}", String.valueOf(e));
         }
     }
 
@@ -473,7 +487,7 @@ public class MainViewController implements VehicleObserver
             vehicleImages.remove(v);
             img = null;
 
-            log.info(String.format("Removed existing vehicle: %s!", v));
+            logger.info("Removed existing vehicle: {}!", v);
         }
     }
 
@@ -491,6 +505,6 @@ public class MainViewController implements VehicleObserver
 
         v.GoTo(targetX, targetY);
         
-        log.info(String.format("Vehicle: %s is now moving to: %.2f, %.2f", v, event.getX(), event.getY()));
+        logger.info("Vehicle: {} is now moving to: {}, {}", v, event.getX(), event.getY());
     }
 }

@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.po2025.thecars.Clutch;
 import org.po2025.thecars.Engine;
 import org.po2025.thecars.Gearbox;
@@ -13,12 +15,11 @@ import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Random;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class NewVehicleViewController
 {
-    private static final Logger log = Logger.getLogger("NewVehicleViewController");
+    private static final Logger logger = LogManager.getLogger();
     private Vehicle result = null;
 
     public Vehicle getResult() { return result; }
@@ -42,6 +43,8 @@ public class NewVehicleViewController
     @FXML
     private void initialize()
     {
+        logger.info("Initializing New Vehicle Controller...");
+
         // Prepopulate table data
         gRatiosTV.getItems().addAll(
           new GearRatio(1, Gearbox.GENERIC_GEAR_RATIOS.get(1)),
@@ -124,6 +127,8 @@ public class NewVehicleViewController
         cWeightTF.setText(String.valueOf(Math.round(rnd.nextFloat(1,1000))));
         gFinalDriveTF.setText(String.valueOf(Gearbox.GENERIC_FINAL_DRIVE));
         eMaxSpeedTF.setText(String.valueOf(Engine.MINIMUM_ROTATION_SPEED));
+
+        logger.info("New Vehicle Controller initialized");
     }
 
     @FXML
@@ -198,6 +203,8 @@ public class NewVehicleViewController
             alert.setHeaderText("Not all fields are populated");
             alert.setContentText("Please populate all available fields.");
             alert.showAndWait();
+
+            logger.warn("User attempted to add a Vehicle without populating all of the required fields");
             return;
         }
 
@@ -246,7 +253,7 @@ public class NewVehicleViewController
              alert.setTitle("Error!");
              alert.setHeaderText("Vehicle add");
              alert.setContentText("An error occurred while adding Vehicle! Check logs for more information");
-             log.log(Level.SEVERE, "NumberFormatException when adding new Vehicle: " + e);
+             logger.fatal("An NumberFormatException occurred when adding new Vehicle: {}", String.valueOf(e));
          }
     }
 
@@ -256,6 +263,8 @@ public class NewVehicleViewController
     @FXML
     private void onCancelBtn(ActionEvent event)
     {
+        logger.info("User cancelled operation");
+
         result = null;
         ((Stage) cancelBtn.getScene().getWindow()).close();
     }
