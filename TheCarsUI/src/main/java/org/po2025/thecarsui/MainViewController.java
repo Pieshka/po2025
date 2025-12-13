@@ -439,9 +439,12 @@ public class MainViewController implements VehicleObserver
             imgV.setEffect(colorAdjust);
 
             // Set image size
-            imgV.setFitWidth(83);
-            imgV.setFitHeight(52);
             imgV.setPreserveRatio(true);
+            double maxWidth = 50;
+            double maxHeight = 30;
+            double scale = Math.min(maxWidth / img.getWidth(), maxHeight / img.getHeight());
+            imgV.setFitWidth(img.getWidth() * scale);
+            imgV.setFitHeight(img.getHeight() * scale);
             imgV.setOpacity(0.5);
 
             // Set image position
@@ -512,11 +515,31 @@ public class MainViewController implements VehicleObserver
         Vehicle v = currentVehicleCB.getSelectionModel().getSelectedItem();
         if (v == null) return;
 
-        float targetX = (float)(event.getX() / METERS_TO_PIXELS);
-        float targetY = (float)(event.getY() / METERS_TO_PIXELS);
+        ImageView img = vehicleImages.get(v);
+        if (img == null) return;
+
+        // Get image size
+        double imgWidth = img.getFitWidth();
+        double imgHeight = img.getFitHeight();
+
+        // Get pane size
+        double paneWidth = MainVehiclePane.getWidth();
+        double paneHeight = MainVehiclePane.getHeight();
+
+        // Get mouse click coords
+        double clickX = event.getX();
+        double clickY = event.getY();
+
+        // Clamp pixel coords
+        double clampedX = Math.max(0, Math.min(clickX, paneWidth - imgWidth / 2));
+        double clampedY = Math.max(0, Math.min(clickY, paneHeight - imgHeight / 2));
+
+        // Calculate target coords
+        float targetX = (float)(clampedX / METERS_TO_PIXELS);
+        float targetY = (float)(clampedY / METERS_TO_PIXELS);
 
         v.GoTo(targetX, targetY);
         
-        logger.info("Vehicle: {} is now moving to: {}, {}", v, event.getX(), event.getY());
+        logger.info("Vehicle: {} is now moving to: {}, {}", v, targetX, targetY);
     }
 }
