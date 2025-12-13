@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.po2025.thecarsui.NewVehicleViewController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.po2025.thecarsui.NewVehicleViewController">
     <TabPane prefHeight="257.0" prefWidth="714.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
         <Tab text="Vehicle">
             <VBox alignment="BASELINE_LEFT" prefHeight="200.0" prefWidth="100.0">
@@ -12,21 +12,21 @@
                     <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </VBox.margin>
-                    <Label text="Model:" />
+                    <Label text="Model:" prefWidth="150" />
                     <TextField fx:id="vModelTF" />
                 </HBox>
                 <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="20.0" spacing="10.0">
                     <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" />
                     </VBox.margin>
-                    <Label text="License plate number:" />
+                    <Label text="License plate number:" prefWidth="150" />
                     <TextField fx:id="vLicensePlateNumberTF" />
                 </HBox>
                 <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="56.0" spacing="10.0">
                     <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" />
                     </VBox.margin>
-                    <Label text="Maximum speed:" />
+                    <Label text="Maximum speed:" prefWidth="150" />
                     <TextField fx:id="vMaxSpeedTF" />
                     <Label text="m/s" />
                 </HBox>
@@ -34,7 +34,7 @@
                     <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" />
                     </VBox.margin>
-                    <Label text="Wheel diameter:" />
+                    <Label text="Wheel diameter:" prefWidth="150" />
                     <TextField fx:id="vWheelDiameterTF" />
                     <Label text="m" />
                 </HBox>
@@ -46,14 +46,14 @@
                     <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </VBox.margin>
-                    <Label text="Name:" />
+                    <Label text="Name:" prefWidth="150" />
                     <TextField fx:id="gNameTF" />
                 </HBox>
                 <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="20.0" spacing="10.0">
                     <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" />
                     </VBox.margin>
-                    <Label text="Price:" />
+                    <Label text="Price:" prefWidth="150" />
                     <TextField fx:id="gPriceTF" />
                <Label text="PLN" />
                 </HBox>
@@ -61,7 +61,7 @@
                     <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" />
                     </VBox.margin>
-                    <Label text="Weight:" />
+                    <Label text="Weight:" prefWidth="150" />
                     <TextField fx:id="gWeightTF" />
                     <Label text="kg" />
                 </HBox>
@@ -69,7 +69,7 @@
                     <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" />
                     </VBox.margin>
-                    <Label text="Final drive:" />
+                    <Label text="Final drive:" prefWidth="150" />
                     <TextField fx:id="gFinalDriveTF" />
                 </HBox>
                 <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
@@ -97,14 +97,14 @@
                     <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </VBox.margin>
-                    <Label text="Name:" />
+                    <Label text="Name:" prefWidth="150" />
                     <TextField fx:id="eNameTF" />
                 </HBox>
                 <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="20.0" spacing="10.0">
                     <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" />
                     </VBox.margin>
-                    <Label text="Price:" />
+                    <Label text="Price:" prefWidth="150" />
                     <TextField fx:id="ePriceTF" />
                     <Label text="PLN" />
                 </HBox>
@@ -112,7 +112,7 @@
                     <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" />
                     </VBox.margin>
-                    <Label text="Weight:" />
+                    <Label text="Weight:" prefWidth="150" />
                     <TextField fx:id="eWeightTF" />
                     <Label text="kg" />
                 </HBox>
@@ -120,7 +120,7 @@
                     <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" />
                     </VBox.margin>
-                    <Label text="Max rotat. speed:" />
+                    <Label text="Max rotat. speed:" prefWidth="150" />
                     <TextField fx:id="eMaxSpeedTF" />
                     <Label text="RPM" />
                 </HBox>
@@ -132,14 +132,14 @@
                     <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </VBox.margin>
-                    <Label text="Name:" />
+                    <Label text="Name:" prefWidth="150" />
                     <TextField fx:id="cNameTF" />
                 </HBox>
                 <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="20.0" spacing="10.0">
                     <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" />
                     </VBox.margin>
-                    <Label text="Price:" />
+                    <Label text="Price:" prefWidth="150" />
                     <TextField fx:id="cPriceTF" />
                     <Label text="PLN" />
                 </HBox>
@@ -147,7 +147,7 @@
                     <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" />
                     </VBox.margin>
-                    <Label text="Weight:" />
+                    <Label text="Weight:" prefWidth="150" />
                     <TextField fx:id="cWeightTF" />
                     <Label text="kg" />
                 </HBox>

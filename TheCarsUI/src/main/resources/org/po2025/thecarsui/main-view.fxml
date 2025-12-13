@@ -12,27 +12,27 @@
                     <TitledPane text="Vehicle">
                         <VBox prefHeight="369.0" prefWidth="206.0" spacing="10.0">
                             <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
-                                <Label text="Model" HBox.hgrow="ALWAYS" />
+                                <Label text="Model" HBox.hgrow="ALWAYS" prefWidth="150" />
                                 <TextField fx:id="vehicleModelTF" editable="false" HBox.hgrow="ALWAYS" />
                             </HBox>
                             <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="20.0" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
-                                <Label text="License plate number" HBox.hgrow="ALWAYS" />
+                                <Label text="License plate number" HBox.hgrow="ALWAYS" prefWidth="150" />
                                 <TextField fx:id="vehicleLicensePlateTF" editable="false" HBox.hgrow="ALWAYS" />
                             </HBox>
                             <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="57.0" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
-                                <Label text="Weight [kg]" HBox.hgrow="ALWAYS" />
+                                <Label text="Weight [kg]" HBox.hgrow="ALWAYS" prefWidth="150" />
                                 <TextField fx:id="vehicleWeightTF" editable="false" HBox.hgrow="ALWAYS" />
                             </HBox>
                             <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="94.0" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
-                                <Label text="Current velocity [m/s]" HBox.hgrow="ALWAYS" />
+                                <Label text="Current velocity [m/s]" HBox.hgrow="ALWAYS" prefWidth="150" />
                                 <TextField fx:id="vehicleCurVelocityTF" editable="false" HBox.hgrow="ALWAYS" />
                             </HBox>
                             <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="131.0" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
-                                <Label text="Maximum velocity [m/s]" HBox.hgrow="ALWAYS" />
+                                <Label text="Maximum velocity [m/s]" HBox.hgrow="ALWAYS" prefWidth="150" />
                                 <TextField fx:id="vehicleMaxSpeedTF" editable="false" HBox.hgrow="ALWAYS" />
                             </HBox>
                             <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="168.0" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
-                                <Label text="Wheel diameter [m]" HBox.hgrow="ALWAYS" />
+                                <Label text="Wheel diameter [m]" HBox.hgrow="ALWAYS" prefWidth="150" />
                                 <TextField fx:id="vehicleWheelDiaTF" editable="false" HBox.hgrow="ALWAYS" />
                             </HBox>
                             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
@@ -44,19 +44,19 @@
                     <TitledPane layoutX="10.0" layoutY="10.0" text="Gearbox">
                         <VBox prefHeight="369.0" prefWidth="206.0" spacing="10.0">
                             <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
-                                <Label text="Name" HBox.hgrow="ALWAYS" />
+                                <Label text="Name" HBox.hgrow="ALWAYS" prefWidth="150" />
                                 <TextField fx:id="gearboxNameTF" editable="false" HBox.hgrow="ALWAYS" />
                             </HBox>
                             <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="20.0" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
-                                <Label text="Price" HBox.hgrow="ALWAYS" />
+                                <Label text="Price" HBox.hgrow="ALWAYS" prefWidth="150" />
                                 <TextField fx:id="gearboxPriceTF" editable="false" HBox.hgrow="ALWAYS" />
                             </HBox>
                             <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="57.0" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
-                                <Label text="Weight" HBox.hgrow="ALWAYS" />
+                                <Label text="Weight" HBox.hgrow="ALWAYS" prefWidth="150" />
                                 <TextField fx:id="gearboxWeightTF" editable="false" HBox.hgrow="ALWAYS" />
                             </HBox>
                             <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="94.0" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
-                                <Label text="Current gear" HBox.hgrow="ALWAYS" />
+                                <Label text="Current gear" HBox.hgrow="ALWAYS" prefWidth="150" />
                                 <TextField fx:id="gearboxCurGearTF" editable="false" HBox.hgrow="ALWAYS" />
                             </HBox>
                             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
@@ -68,19 +68,19 @@
                     <TitledPane layoutX="10.0" layoutY="36.0" text="Engine">
                         <VBox prefHeight="369.0" prefWidth="206.0" spacing="10.0">
                             <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
-                                <Label text="Name" HBox.hgrow="ALWAYS" />
+                                <Label text="Name" HBox.hgrow="ALWAYS" prefWidth="150" />
                                 <TextField fx:id="engineNameTF" editable="false" HBox.hgrow="ALWAYS" />
                             </HBox>
                             <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="20.0" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
-                                <Label text="Price" HBox.hgrow="ALWAYS" />
+                                <Label text="Price" HBox.hgrow="ALWAYS" prefWidth="150" />
                                 <TextField fx:id="enginePriceTF" editable="false" HBox.hgrow="ALWAYS" />
                             </HBox>
                             <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="57.0" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
-                                <Label text="Weight" HBox.hgrow="ALWAYS" />
+                                <Label text="Weight" HBox.hgrow="ALWAYS" prefWidth="150" />
                                 <TextField fx:id="engineWeightTF" editable="false" HBox.hgrow="ALWAYS" />
                             </HBox>
                             <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="94.0" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
-                                <Label text="Current rotational speed" HBox.hgrow="ALWAYS" />
+                                <Label text="Current rotational speed" HBox.hgrow="ALWAYS" prefWidth="150" />
                                 <TextField fx:id="engineCurRotTF" editable="false" HBox.hgrow="ALWAYS" />
                             </HBox>
                             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
@@ -94,19 +94,19 @@
                     <TitledPane layoutX="10.0" layoutY="62.0" text="Clutch">
                         <VBox prefHeight="369.0" prefWidth="206.0" spacing="10.0">
                             <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
-                                <Label text="Name" HBox.hgrow="ALWAYS" />
+                                <Label text="Name" HBox.hgrow="ALWAYS" prefWidth="150" />
                                 <TextField fx:id="clutchNameTF" editable="false" HBox.hgrow="ALWAYS" />
                             </HBox>
                             <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="20.0" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
-                                <Label text="Price" HBox.hgrow="ALWAYS" />
+                                <Label text="Price" HBox.hgrow="ALWAYS" prefWidth="150" />
                                 <TextField fx:id="clutchPriceTF" editable="false" HBox.hgrow="ALWAYS" />
                             </HBox>
                             <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="57.0" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
-                                <Label text="Weight" HBox.hgrow="ALWAYS" />
+                                <Label text="Weight" HBox.hgrow="ALWAYS" prefWidth="150" />
                                 <TextField fx:id="clutchWeightTF" editable="false" HBox.hgrow="ALWAYS" />
                             </HBox>
                             <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="94.0" prefHeight="27.0" prefWidth="153.0" spacing="10.0">
-                                <Label text="Clutch state" HBox.hgrow="ALWAYS" />
+                                <Label text="Clutch state" HBox.hgrow="ALWAYS" prefWidth="150" />
                                 <TextField fx:id="clutchStateTF" editable="false" HBox.hgrow="ALWAYS" />
                             </HBox>
                             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
