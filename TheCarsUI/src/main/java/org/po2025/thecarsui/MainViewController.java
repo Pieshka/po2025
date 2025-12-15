@@ -21,6 +21,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.po2025.thecars.Vehicle;
 import org.po2025.thecars.VehicleObserver;
+import org.po2025.thecars.VehicleStartupException;
 import org.po2025.thecars.VehicleUpdater;
 
 import java.io.IOException;
@@ -248,9 +249,21 @@ public class MainViewController implements VehicleObserver
         Vehicle v = currentVehicleCB.getSelectionModel().getSelectedItem();
         if (v != null)
         {
-            v.Run();
-            refreshDynamicControls(v);
-            logger.info("Vehicle {} started!", v);
+            try
+            {
+                v.Run();
+                refreshDynamicControls(v);
+                logger.info("Vehicle {} started!", v);
+            }
+            catch (VehicleStartupException e)
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error!");
+                alert.setHeaderText("Vehicle startup");
+                alert.setContentText("You attempted to run an already started vehicle!");
+                alert.showAndWait();
+                logger.fatal("VehicleStartupException when running Vehicle {} {}: {}", v.GetModel(), v.GetLicensePlateNumber(), String.valueOf(e));
+            }
         }
     }
 
@@ -263,9 +276,21 @@ public class MainViewController implements VehicleObserver
         Vehicle v = currentVehicleCB.getSelectionModel().getSelectedItem();
         if (v != null)
         {
-            v.Stop();
-            refreshDynamicControls(v);
-            logger.info("Vehicle {} stopped!", v);
+            try
+            {
+                v.Stop();
+                refreshDynamicControls(v);
+                logger.info("Vehicle {} stopped!", v);
+            }
+            catch (VehicleStartupException e)
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error!");
+                alert.setHeaderText("Vehicle startup");
+                alert.setContentText("You attempted to stop an already stopped vehicle!");
+                alert.showAndWait();
+                logger.fatal("VehicleStartupException when stopping Vehicle {} {}: {}", v.GetModel(), v.GetLicensePlateNumber(), String.valueOf(e));
+            }
         }
     }
 
@@ -472,6 +497,7 @@ public class MainViewController implements VehicleObserver
             alert.setTitle("Error!");
             alert.setHeaderText("Vehicle add");
             alert.setContentText("An error occurred while adding Vehicle! Check logs for more information");
+            alert.showAndWait();
             logger.fatal("IOException when adding new Vehicle: {}", String.valueOf(e));
         }
     }

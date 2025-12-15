@@ -103,15 +103,25 @@ public class Vehicle
         }
     }
 
-    public void Run()
+    public void Run() throws VehicleStartupException
     {
+        if(engine.GetCurrentRotationSpeed() > 0)
+        {
+            throw new VehicleStartupException("Vehicle is already running!");
+        }
+
         gearbox.SetLowestGear();
         gearbox.IncreaseGear();
         engine.Run();
     }
 
-    public void Stop()
+    public void Stop() throws VehicleStartupException
     {
+        if(engine.GetCurrentRotationSpeed() <= 0)
+        {
+            throw new VehicleStartupException("Vehicle is already stopped!");
+        }
+
         engine.Stop();
         gearbox.SetLowestGear();
         this.currentVelocity = 0; // Let's assume we are pressing the brake on stop
